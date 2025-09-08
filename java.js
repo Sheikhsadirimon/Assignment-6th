@@ -4,6 +4,15 @@ const loadAllCategories = () => {
     .then((data) => displayCategories(data.categories));
 };
 
+const manageSpinner=(status)=>{
+    if(status ==true){
+        document.getElementById("spinner").classList.remove("hidden")
+    }
+    else{
+        document.getElementById("spinner").classList.add("hidden")
+    }
+}
+
 const removeActive = () => {
   const categoryBtn = document.querySelectorAll(".category-btn");
   categoryBtn.forEach((btn) => btn.classList.remove("active"));
@@ -31,6 +40,7 @@ const displayPlantDetails = (plant) => {
 };
 
 const loadTrees = (id) => {
+    manageSpinner(true)
   // console.log(id)
   const url = `https://openapi.programming-hero.com/api/category/${id}`;
   // console.log(url)
@@ -75,6 +85,7 @@ const displayTrees = (trees) => {
     `;
     cardContainer.append(card);
   }
+  manageSpinner(false)
 };
 
 const displayCategories = (categories) => {
