@@ -4,15 +4,26 @@ const loadAllCategories = () => {
     .then((data) => displayCategories(data.categories));
 };
 
+const removeActive = () => {
+  const categoryBtn = document.querySelectorAll(".category-btn");
+  categoryBtn.forEach(btn =>btn.classList.remove("active"))
+};
+
 const loadTrees = (id) => {
   // console.log(id)
   const url = `https://openapi.programming-hero.com/api/category/${id}`;
   // console.log(url)
   fetch(url)
     .then((res) => res.json())
-    .then((data) => displayTrees(data.plants));
+    .then((data) => {
+      removeActive();
+      const clickBtn = document.getElementById(`cat-btn-${id}`);
+      //   console.log(clickBtn)
+      clickBtn.classList.add("active");
+      displayTrees(data.plants);
+    });
 };
-// displaylevelword
+// displaytree
 const displayTrees = (trees) => {
   const cardContainer = document.getElementById("card-container");
   cardContainer.innerHTML = "";
@@ -52,12 +63,10 @@ const displayCategories = (categories) => {
   for (const cat of categories) {
     // console.log(cat);
     const btnDiv = document.createElement("div");
-    btnDiv.innerHTML = `<button onclick="loadTrees(${cat.id})" class="cursor-pointer hover:bg-[#15803D] hover:w-full text-left p-2 hover:text-white rounded-sm">${cat.category_name}</button>`;
+    btnDiv.innerHTML = `<button id="cat-btn-${cat.id}" onclick="loadTrees(${cat.id})" class="cursor-pointer hover:bg-[#15803D] hover:w-full text-left p-2 hover:text-white rounded-sm category-btn">${cat.category_name}</button>`;
     categoryLists.append(btnDiv);
   }
 };
-
-loadAllCategories();
 
 const loadAllTrees = () => {
   fetch("https://openapi.programming-hero.com/api/plants")
@@ -65,13 +74,13 @@ const loadAllTrees = () => {
     .then((data) => displayAllTrees(data.plants));
 };
 
-const displayAllTrees =(trees)=>{
-    // console.log(trees)
-    const cardContainer = document.getElementById("card-container");
-    cardContainer.innerHTML=""
-    for(let tree of trees){
-        // console.log(tree)
-        const card = document.createElement("div");
+const displayAllTrees = (trees) => {
+  // console.log(trees)
+  const cardContainer = document.getElementById("card-container");
+  cardContainer.innerHTML = "";
+  for (let tree of trees) {
+    // console.log(tree)
+    const card = document.createElement("div");
     card.innerHTML = `
     <div class="bg-white p-5 space-y-3 rounded-lg">
                 <img src=${tree.image} alt="" class="w-[320px] h-[280px] rounded-lg object-cover mb-4">
@@ -85,7 +94,8 @@ const displayAllTrees =(trees)=>{
             </div>
     `;
     cardContainer.append(card);
-    }
-}
+  }
+};
 
+loadAllCategories();
 loadAllTrees();
