@@ -15,13 +15,31 @@ const loadTrees = (id) => {
 // displaylevelword
 const displayTrees = (trees) => {
   const cardContainer = document.getElementById("card-container");
-//   cardContainer.innerHTML = "";
+  cardContainer.innerHTML = "";
+
+// {
+//     "id": 16,
+//     "image": "https://i.ibb.co.com/fdYphDNS/pine-min.jpg",
+//     "name": "Pine",
+//     "description": "An evergreen tree with needle-like leaves and fragrant resin. Commonly used for timber, paper production, and landscaping.",
+//     "category": "Evergreen Tree",
+//     "price": 1500
+// }
 
   for (let tree of trees) {
-    // console.log(tree)
+    console.log(tree)
     const card = document.createElement("div");
     card.innerHTML = `
-    <p>cats</p>
+    <div class="bg-white p-5 space-y-3">
+                <img src=${tree.image} alt="" class="w-[320px] h-[280px] rounded-lg object-cover mb-4">
+                <h2 class="font-semibold">${tree.name}</h2>
+                <p class="text-gray-600 ">${tree.description}</p>
+                <div class="flex justify-between">
+                    <button class="bg-[#DCFCE7] text-[#15803D] rounded-2xl px-4 py-1 text-sm">${tree.category}</button>
+                    <p>৳${tree.price}</p>
+                </div>
+                <button class="bg-[#15803D] lg:px-26 px-27 py-3 text-white rounded-4xl whitespace-nowrap cursor-pointer">Add to Cart</button>
+            </div>
     `;
     cardContainer.append(card);
   }
