@@ -6,7 +6,28 @@ const loadAllCategories = () => {
 
 const removeActive = () => {
   const categoryBtn = document.querySelectorAll(".category-btn");
-  categoryBtn.forEach(btn =>btn.classList.remove("active"))
+  categoryBtn.forEach((btn) => btn.classList.remove("active"));
+};
+
+const loadPlantDetail = async (id) => {
+  const url = `https://openapi.programming-hero.com/api/plant/${id}`;
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => displayPlantDetails(data.plants));
+};
+
+const displayPlantDetails = (plant) => {
+//   console.log(plant);
+  const detailsBox = document.getElementById("details-container");
+  detailsBox.innerHTML = `<div class="space-y-4">
+            <h1 class="text-2xl font-bold">${plant.name}</h1>
+            <img src="${plant.image}" class=" rounded-lg object-cover mb-4 w-full h-[500px]" alt="">
+            <h2 class="text-gray-800"><span class="font-semibold text-black">Catagory:</span> ${plant.category}</h2>
+            <h1 class="text-gray-800"><span class="font-semibold text-black">Price: ৳</span> ${plant.price}</h1>
+            <p class="text-gray-800"><span class="font-semibold text-black">Description:</span> ${plant.description}</p>
+
+        </div>`;
+  document.getElementById("plant_modal").showModal();
 };
 
 const loadTrees = (id) => {
@@ -43,7 +64,7 @@ const displayTrees = (trees) => {
     card.innerHTML = `
     <div class="bg-white p-5 space-y-3 rounded-lg">
                 <img src=${tree.image} alt="" class="w-[320px] h-[280px] rounded-lg object-cover mb-4">
-                <h2 class="font-semibold">${tree.name}</h2>
+                <h2 onclick="loadPlantDetail(${tree.id})" class="font-semibold hover:text-[#15803D] hover:underline hover:text-2xl cursor-pointer">${tree.name}</h2>
                 <p class="text-gray-600 h-[150px]">${tree.description}</p>
                 <div class="flex justify-between">
                     <button class="bg-[#DCFCE7] text-[#15803D] rounded-2xl px-4 py-1 text-sm">${tree.category}</button>
@@ -84,7 +105,7 @@ const displayAllTrees = (trees) => {
     card.innerHTML = `
     <div class="bg-white p-5 space-y-3 rounded-lg">
                 <img src=${tree.image} alt="" class="w-[320px] h-[280px] rounded-lg object-cover mb-4">
-                <h2 class="font-semibold">${tree.name}</h2>
+                <h2 onclick="loadPlantDetail(${tree.id})" class="font-semibold hover:text-[#15803D] hover:underline hover:text-2xl cursor-pointer">${tree.name}</h2>
                 <p class="text-gray-600 h-[150px]">${tree.description}</p>
                 <div class="flex justify-between">
                     <button class="bg-[#DCFCE7] text-[#15803D] rounded-2xl px-4 py-1 text-sm">${tree.category}</button>
