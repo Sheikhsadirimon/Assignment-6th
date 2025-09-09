@@ -82,7 +82,7 @@ const displayTrees = (trees) => {
                     <button class="bg-[#DCFCE7] text-[#15803D] rounded-2xl px-4 py-1 text-sm">${tree.category}</button>
                     <p>৳${tree.price}</p>
                 </div>
-                <button class="bg-[#15803D] lg:px-26 px-27 py-3 text-white rounded-4xl whitespace-nowrap cursor-pointer add-to-cart" data-name="${tree.name}" data-price="${tree.price}">Add to Cart</button>
+                <button class="bg-[#15803D] w-full hover:scale-110 py-3 text-white rounded-4xl whitespace-nowrap cursor-pointer add-to-cart" data-name="${tree.name}" data-price="${tree.price}">Add to Cart</button>
             </div>
     `;
     cardContainer.append(card);
@@ -136,7 +136,7 @@ const displayAllTrees = (trees) => {
                     <button class="bg-[#DCFCE7] text-[#15803D] rounded-2xl px-4 py-1 text-sm">${tree.category}</button>
                     <p>৳${tree.price}</p>
                 </div>
-                <button class="bg-[#15803D] lg:px-26 px-27 py-3 text-white rounded-4xl whitespace-nowrap cursor-pointer add-to-cart" data-name="${tree.name}" data-price="${tree.price}" >Add to Cart</button>
+                <button class="bg-[#15803D] w-full hover:scale-110 py-3 text-white rounded-4xl whitespace-nowrap cursor-pointer add-to-cart" data-name="${tree.name}" data-price="${tree.price}" >Add to Cart</button>
             </div>
     `;
     cardContainer.append(card);
