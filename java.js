@@ -93,6 +93,7 @@ const displayTrees = (trees) => {
       // console.log(button)
       const name = button.getAttribute("data-name");
       const price = parseInt(button.getAttribute("data-price"));
+      alert(`${name} has been added to the cart.`)
       // console.log(name,price )
       cart.push({ name, price });
       total += price;
@@ -142,9 +143,11 @@ const displayAllTrees = (trees) => {
   }
   document.querySelectorAll(".add-to-cart").forEach((button) => {
     button.addEventListener("click", () => {
+      
       // console.log(button)
       const name = button.getAttribute("data-name");
       const price = parseInt(button.getAttribute("data-price"));
+      alert(`${name} has been added to the cart.`)
       // console.log(name,price )
       cart.push({ name, price });
       total += price;
